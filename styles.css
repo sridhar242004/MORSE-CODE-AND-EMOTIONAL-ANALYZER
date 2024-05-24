@@ -1,0 +1,203 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px;
+    width: 80%;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #e67e22; /* Orange */
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.5); /* Orange */
+}
+
+button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db; /* Blue */
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9; /* Dark Blue */
+}
+
+.results {
+    margin-top: 30px;
+}
+
+.results p {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Additional Styling for Form Inputs */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #999;
+}
+
+/* Additional Styling for Responsive Design */
+@media screen and (max-width: 800px) {
+    .container {
+        padding: 40px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+}
+
+/* 1. Container Hover Effect */
+.container:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+/* 3. Form Input Border Gradient */
+input[type="text"],
+input[type="password"] {
+    border: 1px solid transparent;
+    background-image: linear-gradient(to right, #3498db, #2980b9); /* Blue */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+/* 4. Button Pulse Animation */
+button {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 5. Results Fade In Animation */
+.results {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 6. Form Input Placeholder Color */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #777;
+}
+
+/* 7. Button Border Gradient */
+button {
+    border: 2px solid transparent;
+    background-image: linear-gradient(to right, #2980b9, #3498db); /* Dark Blue */
+}
+
+/* 8. Container Background Gradient */
+.container {
+    background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+}
+
+/* 9. Heading Text Shadow */
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 10. Results Box Shadow */
+.results {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* New CSS Effects */
+/* 11. Button Hover Shadow */
+button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 12. Input Focus Border */
+input:focus {
+    border-color: #9b59b6; /* Purple */
+}
+
+/* 13. Form Label Animation */
+label {
+    transition: transform 0.3s ease;
+}
+
+label:hover {
+    transform: scale(1.1);
+}
+
+/* 14. Container Background Animation */
+.container {
+    transition: background-color 0.3s ease;
+}
+
+.container:hover {
+    background-color: #ecf0f1; /* Light Grey */
+}
+
+/* 15. Button Border Animation */
+button {
+    transition: border-color 0.3s ease;
+}
+
+button:hover {
+    border-color: #1abc9c; /* Turquoise */
+}
