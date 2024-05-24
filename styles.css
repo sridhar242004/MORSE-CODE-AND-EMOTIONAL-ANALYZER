@@ -201,3 +201,28 @@ button {
 button:hover {
     border-color: #1abc9c; /* Turquoise */
 }
+/* Additional Styling for Form Inputs */
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #999;
+}
+
+/* Additional Styling for Responsive Design */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        padding: 40px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+}
