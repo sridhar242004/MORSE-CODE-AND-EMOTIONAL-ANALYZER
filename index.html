@@ -6,171 +6,185 @@
     <title>Morse Code Generator and Analyzer</title>
     <style>
         /* Global Styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #fff;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
 
-.container {
-    background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 800px;
-    width: 80%;
-    position: relative;
-    overflow: hidden;
-}
+        .container {
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 80%;
+            position: relative;
+            overflow: hidden;
+        }
 
-.bento-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-.bento-item {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+        .bento-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-h1 {
-    margin-bottom: 30px;
-    color: #333;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-.experimental-typography {
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-    background: linear-gradient(to right, #ff4b1f, #1fddff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        .experimental-typography {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ff4b1f, #1fddff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-form {
-    margin-bottom: 30px;
-}
+        form {
+            margin-bottom: 30px;
+        }
 
-label {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #555;
-}
+        label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #555;
+        }
 
-input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 15px;
-    margin-bottom: 30px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 18px;
-    background-image: linear-gradient(to right, #3498db, #2980b9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 18px;
+            background-image: linear-gradient(to right, #3498db, #2980b9);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-input[type="text"]:focus {
-    outline: none;
-    border-color: #e67e22;
-    box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
-}
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #e67e22;
+            box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
+        }
 
-button {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    background-color: #3498db;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    animation: pulse 1.5s infinite;
-}
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 1.5s infinite;
+        }
 
-button:hover {
-    background-color: #2980b9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-.results {
-    margin-top: 30px;
-    font-size: 20px;
-    color: #333;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
+        .results {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #333;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
 
-/* Additional Styling for Form Inputs */
-input::placeholder {
-    color: #999;
-}
+        input::placeholder {
+            color: #999;
+        }
 
-/* Additional Styling for Responsive Design */
-@media screen and (max-width: 800px) {
-    .container {
-        padding: 40px;
-    }
-    .bento-grid {
-        grid-template-columns: 1fr;
-    }
-    h1 {
-        font-size: 30px;
-    }
-    input[type="text"] {
-        width: 100%;
-    }
-}
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
 
-/* Container Hover Effect */
-.container:hover {
-    transform: scale(1.02);
-}
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            text-align: left;
+            color: #fff;
+        }
 
-/* Button Pulse Animation */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-/* Results Fade In Animation */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-/* Dimensional Scrolling */
-.container::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(45deg, #ff4b1f, #1fddff);
-    border-radius: 50%;
-    z-index: -1;
-    animation: dimensionalScroll 5s infinite linear;
-}
+        @media screen and (max-width: 800px) {
+            .container {
+                padding: 40px;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 30px;
+            }
+            input[type="text"] {
+                width: 100%;
+            }
+        }
 
-@keyframes dimensionalScroll {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(100px, 100px); }
-    100% { transform: translate(0, 0); }
-}
+        .container:hover {
+            transform: scale(1.02);
+        }
 
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -196,53 +210,80 @@ input::placeholder {
         <div id="results" class="results"></div>
     </div>
 
+    <!-- Modal for Instructions -->
+    <div id="instructionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>How to Use the Morse Code Generator and Analyzer</h2>
+            <p>1. To generate Morse code:</p>
+            <p>&nbsp;&nbsp;&nbsp; - Enter the text you want to convert in the "Enter Text" box.</p>
+            <p>&nbsp;&nbsp;&nbsp; - Click the "Generate Morse Code" button.</p>
+            <p>2. To analyze Morse code:</p>
+            <p>&nbsp;&nbsp;&nbsp; - Enter the Morse code you want to convert in the "Enter Morse Code" box.</p>
+            <p>&nbsp;&nbsp;&nbsp; - Click the "Analyze Morse Code" button.</p>
+            <p>Enjoy using the Morse Code tools!</p>
+        </div>
+    </div>
+
     <script>
-        document.getElementById('morseForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var text = document.getElementById('text').value.toUpperCase();
-            var morseCode = "";
-            var textToMorse = {
-                'A': ".-", 'B': "-...", 'C': "-.-.", 'D': "-..", 'E': ".", 'F': "..-.",
-                'G': "--.", 'H': "....", 'I': "..", 'J': ".---", 'K': "-.-", 'L': ".-..",
-                'M': "--", 'N': "-.", 'O': "---", 'P': ".--.", 'Q': "--.-", 'R': ".-.",
-                'S': "...", 'T': "-", 'U': "..-", 'V': "...-", 'W': ".--", 'X': "-..-",
-                'Y': "-.--", 'Z': "--..", '1': ".----", '2': "..---", '3': "...--",
-                '4': "....-", '5': ".....", '6': "-....", '7': "--...", '8': "---..",
-                '9': "----.", '0': "-----", ' ': "/"
-            };
+        // Show modal on page load
+        window.onload = function() {
+            var modal = document.getElementById("instructionModal");
+            modal.style.display = "block";
+        };
 
-            for (var i = 0; i < text.length; i++) {
-                if (textToMorse.hasOwnProperty(text[i])) {
-                    morseCode += textToMorse[text[i]] + " ";
-                }
+        // Close modal when clicking on <span> (x)
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            var modal = document.getElementById("instructionModal");
+            modal.style.display = "none";
+        };
+
+        // Close modal when clicking anywhere outside of the modal
+        window.onclick = function(event) {
+            var modal = document.getElementById("instructionModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
+        };
 
-            document.getElementById('results').innerHTML = "<p class='fade-in'>Generated Morse Code: " + morseCode + "</p>";
-        });
-
-        document.getElementById('textForm').addEventListener('submit', function(event) {
+        // Morse Code Generation and Analysis Logic
+        document.getElementById("morseForm").onsubmit = function(event) {
             event.preventDefault();
-            var morse = document.getElementById('morse').value.trim();
-            var textResult = "";
-            var morseToText = {
-                ".-": 'A', "-...": 'B', "-.-.": 'C', "-..": 'D', ".": 'E', "..-.": 'F',
-                "--.": 'G', "....": 'H', "..": 'I', ".---": 'J', "-.-": 'K', ".-..": 'L',
-                "--": 'M', "-.": 'N', "---": 'O', ".--.": 'P', "--.-": 'Q', ".-.": 'R',
-                "...": 'S', "-": 'T', "..-": 'U', "...-": 'V', ".--": 'W', "-..-": 'X',
-                "-.--": 'Y', "--..": 'Z', ".----": '1', "..---": '2', "...--": '3',
-                "....-": '4', ".....": '5', "-....": '6', "--...": '7', "---..": '8',
-                "----.": '9', "-----": '0', "/": ' '
-            };
-            var codes = morse.split(" ");
+            const textInput = document.getElementById("text").value;
+            const morseCode = generateMorseCode(textInput);
+            document.getElementById("results").innerHTML = `Morse Code: ${morseCode}`;
+            document.getElementById("results").style.opacity = 1;
+        };
 
-            for (var i = 0; i < codes.length; i++) {
-                if (morseToText.hasOwnProperty(codes[i])) {
-                    textResult += morseToText[codes[i]];
-                }
-            }
+        document.getElementById("textForm").onsubmit = function(event) {
+            event.preventDefault();
+            const morseInput = document.getElementById("morse").value;
+            const text = analyzeMorseCode(morseInput);
+            document.getElementById("results").innerHTML = `Decoded Text: ${text}`;
+            document.getElementById("results").style.opacity = 1;
+        };
 
-            document.getElementById('results').innerHTML = "<p class='fade-in'>Analyzed Text: " + textResult + "</p>";
-        });
+        // Morse code generation and analysis functions
+        const morseCodeMap = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+            'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+            'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+            'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+            'Y': '-.--', 'Z': '--..',
+            '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+            '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----',
+            ' ': '/'
+        };
+
+        function generateMorseCode(text) {
+            return text.toUpperCase().split('').map(char => morseCodeMap[char] || '').join(' ');
+        }
+
+        function analyzeMorseCode(morse) {
+            return morse.split(' ').map(code => Object.keys(morseCodeMap).find(key => morseCodeMap[key] === code) || '').join('');
+        }
     </script>
 </body>
 </html>
+
