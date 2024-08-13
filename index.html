@@ -3,286 +3,593 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morse Code Generator and Analyzer</title>
+    <title>QuantumMorse: Revolutionizing Communication</title>
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --background-color: #000033;
+            --text-color: #ffffff;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #fff;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
         }
 
         .container {
-            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 800px;
-            width: 80%;
-            position: relative;
-            overflow: hidden;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 51, 0.8);
+            backdrop-filter: blur(10px);
         }
 
-        .bento-item {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        section {
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
         }
 
         h1 {
-            margin-bottom: 30px;
-            color: #333;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .experimental-typography {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #ff4b1f, #1fddff);
+            font-size: 48px;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        form {
-            margin-bottom: 30px;
+        h2 {
+            font-size: 36px;
+            color: var(--primary-color);
         }
 
-        label {
-            display: block;
-            margin-bottom: 20px;
-            font-size: 20px;
-            color: #555;
+        .hero {
+            text-align: center;
         }
 
-        input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 15px;
-            margin-bottom: 30px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
+        .hero p {
             font-size: 18px;
-            background-image: linear-gradient(to right, #3498db, #2980b9);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            max-width: 600px;
+            margin: 0 auto 30px;
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #e67e22;
-            box-shadow: 0 0 15px rgba(230, 126, 34, 0.5);
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--background-color);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .morse-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .morse-input, .morse-output {
+            flex: 1;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 10px;
+            color: var(--text-color);
+            font-size: 16px;
+            resize: vertical;
         }
 
         button {
-            padding: 15px 30px;
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             border: none;
-            border-radius: 8px;
-            background-color: #3498db;
-            color: #fff;
-            font-size: 20px;
+            border-radius: 10px;
+            color: var(--background-color);
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            animation: pulse 1.5s infinite;
+            transition: transform 0.3s ease;
         }
 
         button:hover {
-            background-color: #2980b9;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
 
-        .results {
+        .emotion-display {
             margin-top: 30px;
-            font-size: 20px;
-            color: #333;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
+            text-align: center;
         }
 
-        input::placeholder {
-            color: #999;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
+        .emotion-meter {
             width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding-top: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 10px;
         }
 
-        .modal-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 10px;
-            text-align: left;
+        .emotion-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transition: width 0.5s ease;
+        }
+
+        #emotionResult {
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .quantum-visualizer {
+            width: 100%;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .morse-container {
+                flex-direction: column;
+            }
+        }
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .dark-mode-toggle:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .dark-mode-toggle:focus {
+            outline: none;
+        }
+        
+        /* Dark mode styles */
+        .dark-mode .dark-mode-toggle {
+            background-color: #333;
             color: #fff;
         }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        @media screen and (max-width: 800px) {
-            .container {
-                padding: 40px;
-            }
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 30px;
-            }
-            input[type="text"] {
-                width: 100%;
-            }
-        }
-
-        .container:hover {
-            transform: scale(1.02);
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="bento-grid">
-            <div class="bento-item">
-                <h1 class="experimental-typography">Morse Code Generator</h1>
-                <form id="morseForm">
-                    <label for="text">Enter Text:</label>
-                    <input type="text" id="text" required>
-                    <button type="submit">Generate Morse Code</button>
-                </form>
+    <header>
+        <nav class="container">
+            <div class="logo">QuantumMorse</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#morse">Morse Tool</a>
+                <a href="#quantum">Quantum Lab</a>
+                <a href="#about">About</a>
             </div>
-            <div class="bento-item">
-                <h1 class="experimental-typography">Morse Code Analyzer</h1>
-                <form id="textForm">
-                    <label for="morse">Enter Morse Code:</label>
-                    <input type="text" id="morse" required>
-                    <button type="submit">Analyze Morse Code</button>
-                </form>
-            </div>
-        </div>
-        <div id="results" class="results"></div>
-    </div>
+        </nav>
+    </header>
 
-    <!-- Modal for Instructions -->
-    <div id="instructionModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>How to Use the Morse Code Generator and Analyzer</h2>
-            <p>1. To generate Morse code:</p>
-            <p>&nbsp;&nbsp;&nbsp; - Enter the text you want to convert in the "Enter Text" box.</p>
-            <p>&nbsp;&nbsp;&nbsp; - Click the "Generate Morse Code" button.</p>
-            <p>2. To analyze Morse code:</p>
-            <p>&nbsp;&nbsp;&nbsp; - Enter the Morse code you want to convert in the "Enter Morse Code" box.</p>
-            <p>&nbsp;&nbsp;&nbsp; - Click the "Analyze Morse Code" button.</p>
-            <p>Enjoy using the Morse Code tools!</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Welcome to QuantumMorse</h1>
+                <p>Experience the future of communication with our revolutionary Morse code and emotional analysis platform, powered by quantum computing.</p>
+                <a href="#morse" class="cta-button">Try QuantumMorse Now</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Quantum-Powered Features</h2>
+                <div class="features">
+                    <div class="feature-card floating-element">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Quantum Emotion Analysis</h3>
+                        <p>Uncover deep emotional patterns using our quantum algorithm.</p>
+                    </div>
+                    <div class="feature-card floating-element">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Neural Morse Translation</h3>
+                        <p>Convert text to Morse and back with unparalleled accuracy.</p>
+                    </div>
+                    <div class="feature-card floating-element">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Emotional Spectrum Visualization</h3>
+                        <p>See emotions come to life with our advanced 3D rendering.</p>
+                    </div>
+                    <div class="feature-card floating-element">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Quantum Encryption</h3>
+                        <p>Secure your Morse messages with unbreakable quantum encryption.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="morse">
+            <div class="container">
+                <h2>QuantumMorse Analyzer</h2>
+                <div class="morse-container">
+                    <div class="morse-input">
+                        <textarea id="inputText" rows="5" placeholder="Enter your message or Morse code here..."></textarea>
+                        <button onclick="analyzeMorse()">Analyze</button>
+                    </div>
+                    <div class="morse-output">
+                        <textarea id="outputText" rows="5" readonly></textarea>
+                        <button onclick="copyOutput()">Copy Output</button>
+                    </div>
+                </div>
+                <div class="emotion-display">
+                    <h3>Quantum Emotional Analysis</h3>
+                    <div class="emotion-meter">
+                        <div class="emotion-fill" id="emotionFill"></div>
+                    </div>
+                    <p id="emotionResult"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quantum">
+            <div class="container">
+                <h2>Quantum Visualization Lab</h2>
+                <p>Watch as quantum particles react to the emotional content of your messages.</p>
+                <div class="quantum-visualizer" id="quantumVisualizer"></div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About QuantumMorse</h2>
+                <p>QuantumMorse is at the forefront of communication technology, merging the historical significance of Morse code with cutting-edge quantum computing and emotional analysis. Our mission is to revolutionize how we understand and convey emotions in the digital age, providing users with unprecedented insights into the subtleties of human communication.</p>
+                <p>Founded by a team of quantum physicists, linguists, and AI specialists, QuantumMorse is more than just a tool – it's a glimpse into the future of human-computer interaction.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 QuantumMorse. Revolutionizing communication one quantum bit at a time.</p>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // Show modal on page load
-        window.onload = function() {
-            var modal = document.getElementById("instructionModal");
-            modal.style.display = "block";
-        };
+        function analyzeMorse() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText');
+            const emotionFill = document.getElementById('emotionFill');
+            const emotionResult = document.getElementById('emotionResult');
 
-        // Close modal when clicking on <span> (x)
-        var span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
-            var modal = document.getElementById("instructionModal");
-            modal.style.display = "none";
-        };
+            // Simulated Morse code conversion (replace with actual implementation)
+            const morseCode = {
+                'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+                'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+                'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+                'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+                'Y': '-.--', 'Z': '--..', '0': '-----', '1': '.----', '2': '..---',
+                '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...',
+                '8': '---..', '9': '----.', '.': '.-.-.-', ',': '--..--', '?': '..--..',
+                "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.', ')': '-.--.-',
+                '&': '.-...', ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.',
+                '-': '-....-', '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.',
+                ' ': '/'
+            };
 
-        // Close modal when clicking anywhere outside of the modal
-        window.onclick = function(event) {
-            var modal = document.getElementById("instructionModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
+            let result = '';
+            if (input.includes('.') || input.includes('-')) {
+                // Decode Morse to text
+                const words = input.split(' / ');
+                result = words.map(word => {
+                    return word.split(' ').map(char => {
+                        return Object.keys(morseCode).find(key => morseCode[key] === char) || '';
+                    }).join('');
+                }).join(' ');
+            } else {
+                // Encode text to Morse
+                result = input.toUpperCase().split('').map(char => {
+                    return morseCode[char] || char;
+                }).join(' ');
             }
-        };
 
-        // Morse Code Generation and Analysis Logic
-        document.getElementById("morseForm").onsubmit = function(event) {
-            event.preventDefault();
-            const textInput = document.getElementById("text").value;
-            const morseCode = generateMorseCode(textInput);
-            document.getElementById("results").innerHTML = `Morse Code: ${morseCode}`;
-            document.getElementById("results").style.opacity = 1;
-        };
+            output.value = result;
 
-        document.getElementById("textForm").onsubmit = function(event) {
-            event.preventDefault();
-            const morseInput = document.getElementById("morse").value;
-            const text = analyzeMorseCode(morseInput);
-            document.getElementById("results").innerHTML = `Decoded Text: ${text}`;
-            document.getElementById("results").style.opacity = 1;
-        };
+            // Simulated quantum emotional analysis
+            const emotionScore = Math.random();
+            emotionFill.style.width = `${emotionScore * 100}%`;
+            
+            let emotion;
+            if (emotionScore < 0.2) emotion = "Deeply Calm";
+            else if (emotionScore < 0.4) emotion = "Mildly Pleasant";
+            else if (emotionScore < 0.6) emotion = "Neutral";
+            else if (emotionScore < 0.8) emotion = "Moderately Intense";
+            else emotion = "Highly Charged";
 
-        // Morse code generation and analysis functions
-        const morseCodeMap = {
-            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
-            'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
-            'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
-            'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
-            'Y': '-.--', 'Z': '--..',
-            '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
-            '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----',
-            ' ': '/'
-        };
+            emotionResult.textContent = `Quantum Emotional State: ${emotion} (${(emotionScore * 100).toFixed(2)}%)`;
 
-        function generateMorseCode(text) {
-            return text.toUpperCase().split('').map(char => morseCodeMap[char] || '').join(' ');
+            // Update quantum visualization
+            updateQuantumVisualization(emotionScore);
         }
 
-        function analyzeMorseCode(morse) {
-            return morse.split(' ').map(code => Object.keys(morseCodeMap).find(key => morseCodeMap[key] === code) || '').join('');
+        function copyOutput() {
+            const output = document.getElementById('outputText');
+            output.select();
+            document.execCommand('copy');
+            alert('Output copied to clipboard!');
         }
+
+        function updateQuantumVisualization(emotionScore) {
+            const visualizer = document.getElementById('quantumVisualizer');
+            visualizer.innerHTML = '';
+            const particleCount = Math.floor(emotionScore * 100) + 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('quantum-particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                visualizer.appendChild(particle);
+            }
+        }
+
+        // Initialize quantum visualization
+        updateQuantumVisualization(0.5);
+
+        // Add interactive particle effect to the hero section
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mousemove', (e) => {
+            const particle = document.createElement('div');
+            particle.classList.add('quantum-particle');
+            particle.style.left = `${e.clientX}px`;
+            particle.style.top = `${e.clientY}px`;
+            hero.appendChild(particle);
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
+
+        // Add floating animation to feature cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Add real-time Morse code conversion
+        const inputText = document.getElementById('inputText');
+        inputText.addEventListener('input', () => {
+            if (!inputText.value.includes('.') && !inputText.value.includes('-')) {
+                analyzeMorse();
+            }
+        });
+
+        // Add quantum encryption simulation
+        function quantumEncrypt(message) {
+            return btoa(message); // This is a simple base64 encoding, replace with actual quantum encryption
+        }
+
+        function quantumDecrypt(encrypted) {
+            return atob(encrypted); // This is a simple base64 decoding, replace with actual quantum decryption
+        }
+
+        // Add voice input feature
+        if ('webkitSpeechRecognition' in window) {
+            const voiceButton = document.createElement('button');
+            voiceButton.textContent = '🎤 Voice Input';
+            voiceButton.onclick = startVoiceInput;
+            document.querySelector('.morse-input').appendChild(voiceButton);
+
+            function startVoiceInput() {
+                const recognition = new webkitSpeechRecognition();
+                recognition.onresult = (event) => {
+                    const voiceResult = event.results[0][0].transcript;
+                    document.getElementById('inputText').value = voiceResult;
+                    analyzeMorse();
+                };
+                recognition.start();
+            }
+        }
+
+        // Create and style the dark mode toggle button
+const darkModeToggle = document.createElement('button');
+darkModeToggle.textContent = '🌓';
+darkModeToggle.className = 'dark-mode-toggle';
+darkModeToggle.onclick = toggleDarkMode;
+document.body.appendChild(darkModeToggle);
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+        document.documentElement.style.setProperty('--background-color', '#ffffff');
+        document.documentElement.style.setProperty('--text-color', '#000033');
+    } else {
+        document.documentElement.style.setProperty('--background-color', '#000033');
+        document.documentElement.style.setProperty('--text-color', '#ffffff');
+    }
+}
+
+        // Add interactive 3D emotion visualization
+        const emotionCanvas = document.createElement('canvas');
+        emotionCanvas.width = 300;
+        emotionCanvas.height = 300;
+        document.querySelector('.emotion-display').appendChild(emotionCanvas);
+
+        const ctx = emotionCanvas.getContext('2d');
+        let emotionParticles = [];
+
+        function createEmotionParticles(emotion) {
+            emotionParticles = [];
+            const particleCount = 100;
+            for (let i = 0; i < particleCount; i++) {
+                emotionParticles.push({
+                    x: Math.random() * emotionCanvas.width,
+                    y: Math.random() * emotionCanvas.height,
+                    radius: Math.random() * 3 + 1,
+                    color: getEmotionColor(emotion),
+                    speed: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function getEmotionColor(emotion) {
+            const colors = {
+                "Deeply Calm": "#00ff00",
+                "Mildly Pleasant": "#66ff66",
+                "Neutral": "#ffff00",
+                "Moderately Intense": "#ff9900",
+                "Highly Charged": "#ff0000"
+            };
+            return colors[emotion] || "#ffffff";
+        }
+
+        function animateEmotionParticles() {
+            ctx.clearRect(0, 0, emotionCanvas.width, emotionCanvas.height);
+            emotionParticles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+
+                particle.y -= particle.speed;
+                if (particle.y < 0) {
+                    particle.y = emotionCanvas.height;
+                }
+            });
+            requestAnimationFrame(animateEmotionParticles);
+        }
+
+        createEmotionParticles("Neutral");
+        animateEmotionParticles();
+
+        // Update emotion visualization when analysis is performed
+        const originalAnalyzeMorse = analyzeMorse;
+        analyzeMorse = function() {
+            originalAnalyzeMorse();
+            const emotionResult = document.getElementById('emotionResult').textContent;
+            const emotion = emotionResult.split(': ')[1].split(' (')[0];
+            createEmotionParticles(emotion);
+        };
     </script>
 </body>
 </html>
